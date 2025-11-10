@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #d4382c;
+    --primary-foreground: #ffffff;
+    --secondary: #009246;
+    --secondary-foreground: #ffffff;
+  }
+
+  body {
+    @apply bg-white text-gray-900;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+}
+
+@layer components {
+  .prose-custom {
+    @apply max-w-none;
+  }
+
+  .prose-custom h1 {
+    @apply text-3xl font-bold mb-4 text-gray-900;
+  }
+
+  .prose-custom h2 {
+    @apply text-2xl font-semibold mb-3 mt-6 text-gray-900;
+  }
+
+  .prose-custom h3 {
+    @apply text-xl font-semibold mb-2 mt-4 text-gray-800;
+  }
+
+  .prose-custom p {
+    @apply mb-4 leading-relaxed text-gray-700;
+  }
+
+  .prose-custom ul {
+    @apply list-disc pl-6 mb-4 space-y-2;
+  }
+
+  .prose-custom ol {
+    @apply list-decimal pl-6 mb-4 space-y-2;
+  }
+
+  .prose-custom li {
+    @apply text-gray-700;
+  }
+
+  .prose-custom strong {
+    @apply font-semibold text-gray-900;
+  }
+
+  .prose-custom em {
+    @apply italic;
+  }
+
+  .prose-custom code {
+    @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+  }
+
+  .prose-custom blockquote {
+    @apply border-l-4 border-primary pl-4 italic text-gray-600 my-4;
+  }
+}
