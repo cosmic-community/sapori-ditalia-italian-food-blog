@@ -48,6 +48,21 @@ export interface Post extends CosmicObject {
   };
 }
 
+// Page interface
+export interface Page extends CosmicObject {
+  type: 'pages';
+  metadata: {
+    page_title: string;
+    subtitle?: string;
+    hero_image?: {
+      url: string;
+      imgix_url: string;
+    };
+    content: string;
+    show_hero?: boolean;
+  };
+}
+
 // API response types
 export interface CosmicResponse<T> {
   objects: T[];
@@ -67,4 +82,9 @@ export function isAuthor(obj: CosmicObject): obj is Author {
 // Type guard for categories
 export function isCategory(obj: CosmicObject): obj is Category {
   return obj.type === 'categories';
+}
+
+// Type guard for pages
+export function isPage(obj: CosmicObject): obj is Page {
+  return obj.type === 'pages';
 }
