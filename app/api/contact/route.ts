@@ -33,10 +33,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email using Resend
+    // Changed: Fixed property name from 'replyTo' to 'reply_to' to match Resend API
     const { data, error } = await resend.emails.send({
       from: 'Sapori d\'Italia <onboarding@resend.dev>', // Change this to your verified domain
       to: ['hello@saporiditalia.com'], // Change this to your receiving email
-      replyTo: email,
+      reply_to: email, // Changed: Using correct snake_case property name
       subject: `Contact Form: ${subject}`,
       html: `
         <!DOCTYPE html>
