@@ -39,7 +39,7 @@ export default function Header() {
               Desserts
             </Link>
             <Link 
-              href="/regional-cuisine" 
+              href="/categories/regional-cuisine" 
               className="text-gray-700 hover:text-primary transition-colors font-medium"
             >
               Regional Cuisine
@@ -96,7 +96,7 @@ export default function Header() {
                 Desserts
               </Link>
               <Link 
-                href="/regional-cuisine" 
+                href="/categories/regional-cuisine" 
                 className="text-gray-700 hover:text-primary transition-colors font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
