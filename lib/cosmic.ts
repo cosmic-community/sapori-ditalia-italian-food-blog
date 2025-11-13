@@ -179,3 +179,21 @@ export async function getNewsletterSubscribers() {
     throw new Error('Failed to fetch newsletter subscribers');
   }
 }
+
+// Fetch all gallery images
+export async function getGalleryImages() {
+  try {
+    const response = await cosmic.objects
+      .find({
+        type: 'gallery-images'
+      })
+      .props(['id', 'title', 'metadata']);
+    
+    return response.objects;
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return [];
+    }
+    throw new Error('Failed to fetch gallery images');
+  }
+}

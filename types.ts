@@ -73,6 +73,18 @@ export interface NewsletterSubscriber extends CosmicObject {
   };
 }
 
+// Gallery Image interface
+export interface GalleryImage extends CosmicObject {
+  type: 'gallery-images';
+  metadata: {
+    image: {
+      url: string;
+      imgix_url: string;
+    };
+    caption?: string;
+  };
+}
+
 // API response types
 export interface CosmicResponse<T> {
   objects: T[];
@@ -102,4 +114,9 @@ export function isPage(obj: CosmicObject): obj is Page {
 // Type guard for newsletter subscribers
 export function isNewsletterSubscriber(obj: CosmicObject): obj is NewsletterSubscriber {
   return obj.type === 'newsletter-subscribers';
+}
+
+// Type guard for gallery images
+export function isGalleryImage(obj: CosmicObject): obj is GalleryImage {
+  return obj.type === 'gallery-images';
 }

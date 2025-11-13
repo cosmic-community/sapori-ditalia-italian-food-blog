@@ -1,13 +1,15 @@
-import { getPosts, getCategories } from '@/lib/cosmic'
+import { getPosts, getCategories, getGalleryImages } from '@/lib/cosmic'
 import PostCard from '@/components/PostCard'
 import CategoryFilter from '@/components/CategoryFilter'
-import type { Post, Category } from '@/types'
+import ImageGallery from '@/components/ImageGallery'
+import type { Post, Category, GalleryImage } from '@/types'
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
 export default async function HomePage() {
   const posts = await getPosts() as Post[]
   const categories = await getCategories() as Category[]
+  const galleryImages = await getGalleryImages() as GalleryImage[]
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -21,6 +23,16 @@ export default async function HomePage() {
           from passionate Italian chefs
         </p>
       </section>
+
+      {/* Image Gallery Section */}
+      {galleryImages.length > 0 && (
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            📸 Culinary Gallery
+          </h2>
+          <ImageGallery images={galleryImages} />
+        </section>
+      )}
 
       {/* Category Filter */}
       <CategoryFilter categories={categories} />

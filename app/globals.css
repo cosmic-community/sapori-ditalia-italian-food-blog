@@ -67,4 +67,9 @@
   .prose-custom blockquote {
     @apply border-l-4 border-primary pl-4 italic text-gray-600 my-4;
   }
+
+  /* Lightbox overlay styles */
+  .lightbox-overlay {
+    backdrop-filter: blur(4px);
+  }
 }
