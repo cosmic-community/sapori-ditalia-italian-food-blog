@@ -24,6 +24,16 @@ export default async function HomePage() {
         </section>
       )}
 
+      {/* Product of the Day Section - Featured prominently at top */}
+      {productOfTheDay && productOfTheDay.metadata?.available && (
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            🌟 Today&apos;s Special Offer
+          </h2>
+          <ProductOfTheDayCard product={productOfTheDay} />
+        </section>
+      )}
+
       {/* Hero Section */}
       <section className="text-center mb-12">
         <h1 className="text-5xl font-bold text-gray-900 mb-4">
@@ -34,16 +44,6 @@ export default async function HomePage() {
           from passionate Italian chefs
         </p>
       </section>
-
-      {/* Product of the Day Section */}
-      {productOfTheDay && productOfTheDay.metadata?.available && (
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            🌟 Product of the Day
-          </h2>
-          <ProductOfTheDayCard product={productOfTheDay} />
-        </section>
-      )}
 
       {/* Image Gallery Section - Clickable grid with lightbox */}
       {galleryImages.length > 0 && (
