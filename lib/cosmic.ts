@@ -161,3 +161,21 @@ export async function getPageBySlug(slug: string) {
     throw new Error('Failed to fetch page');
   }
 }
+
+// Fetch all newsletter subscribers
+export async function getNewsletterSubscribers() {
+  try {
+    const response = await cosmic.objects
+      .find({
+        type: 'newsletter-subscribers'
+      })
+      .props(['id', 'title', 'metadata', 'created_at']);
+    
+    return response.objects;
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return [];
+    }
+    throw new Error('Failed to fetch newsletter subscribers');
+  }
+}

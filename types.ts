@@ -63,6 +63,16 @@ export interface Page extends CosmicObject {
   };
 }
 
+// Newsletter Subscriber interface
+export interface NewsletterSubscriber extends CosmicObject {
+  type: 'newsletter-subscribers';
+  metadata: {
+    email: string;
+    subscribed_at: string;
+    status: 'Active' | 'Unsubscribed';
+  };
+}
+
 // API response types
 export interface CosmicResponse<T> {
   objects: T[];
@@ -87,4 +97,9 @@ export function isCategory(obj: CosmicObject): obj is Category {
 // Type guard for pages
 export function isPage(obj: CosmicObject): obj is Page {
   return obj.type === 'pages';
+}
+
+// Type guard for newsletter subscribers
+export function isNewsletterSubscriber(obj: CosmicObject): obj is NewsletterSubscriber {
+  return obj.type === 'newsletter-subscribers';
 }
