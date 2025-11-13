@@ -179,3 +179,22 @@ export async function getNewsletterSubscribers() {
     throw new Error('Failed to fetch newsletter subscribers');
   }
 }
+
+// Fetch carousel images
+export async function getCarouselImages() {
+  try {
+    const response = await cosmic.objects
+      .findOne({
+        type: 'homepage-carousel',
+        slug: 'homepage-carousel'
+      })
+      .props(['id', 'title', 'metadata']);
+    
+    return response.object;
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return null;
+    }
+    throw new Error('Failed to fetch carousel images');
+  }
+}

@@ -1,16 +1,25 @@
-import { getPosts, getCategories } from '@/lib/cosmic'
+import { getPosts, getCategories, getCarouselImages } from '@/lib/cosmic'
 import PostCard from '@/components/PostCard'
 import CategoryFilter from '@/components/CategoryFilter'
-import type { Post, Category } from '@/types'
+import ImageCarousel from '@/components/ImageCarousel'
+import type { Post, Category, HomepageCarousel } from '@/types'
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
 export default async function HomePage() {
   const posts = await getPosts() as Post[]
   const categories = await getCategories() as Category[]
+  const carouselData = await getCarouselImages() as HomepageCarousel | null
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* Image Carousel */}
+      {carouselData?.metadata?.images && carouselData.metadata.images.length > 0 && (
+        <section className="mb-12">
+          <ImageCarousel images={carouselData.metadata.images} />
+        </section>
+      )}
+
       {/* Hero Section */}
       <section className="text-center mb-12">
         <h1 className="text-5xl font-bold text-gray-900 mb-4">
