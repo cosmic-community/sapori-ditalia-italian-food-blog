@@ -34,13 +34,21 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
   const goToNext = () => {
     const nextIndex = (currentIndex + 1) % images.length
     setCurrentIndex(nextIndex)
-    setSelectedImage(images[nextIndex])
+    // Changed: Added null check for array access to fix TS2345 error
+    const nextImage = images[nextIndex]
+    if (nextImage) {
+      setSelectedImage(nextImage)
+    }
   }
 
   const goToPrevious = () => {
     const previousIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1
     setCurrentIndex(previousIndex)
-    setSelectedImage(images[previousIndex])
+    // Changed: Added null check for array access to fix TS2345 error
+    const previousImage = images[previousIndex]
+    if (previousImage) {
+      setSelectedImage(previousImage)
+    }
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
