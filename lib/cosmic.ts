@@ -216,3 +216,22 @@ export async function getGalleryImages() {
     throw new Error('Failed to fetch gallery images');
   }
 }
+
+// Fetch product of the day
+export async function getProductOfTheDay() {
+  try {
+    const response = await cosmic.objects
+      .findOne({
+        type: 'product-of-the-day',
+        slug: 'product-of-the-day'
+      })
+      .props(['id', 'title', 'metadata']);
+    
+    return response.object;
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return null;
+    }
+    throw new Error('Failed to fetch product of the day');
+  }
+}

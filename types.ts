@@ -100,6 +100,23 @@ export interface GalleryImage extends CosmicObject {
   };
 }
 
+// Product of the Day interface
+export interface ProductOfTheDay extends CosmicObject {
+  type: 'product-of-the-day';
+  metadata: {
+    product_name: string;
+    description: string;
+    price: number;
+    currency: string;
+    product_image?: {
+      url: string;
+      imgix_url: string;
+    };
+    stripe_price_id?: string;
+    available: boolean;
+  };
+}
+
 // API response types
 export interface CosmicResponse<T> {
   objects: T[];
@@ -139,4 +156,9 @@ export function isHomepageCarousel(obj: CosmicObject): obj is HomepageCarousel {
 // Type guard for gallery images
 export function isGalleryImage(obj: CosmicObject): obj is GalleryImage {
   return obj.type === 'gallery-images';
+}
+
+// Type guard for product of the day
+export function isProductOfTheDay(obj: CosmicObject): obj is ProductOfTheDay {
+  return obj.type === 'product-of-the-day';
 }
