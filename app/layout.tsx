@@ -38,7 +38,6 @@ export default function RootLayout({
               <div className="w-full max-w-md">
                 <NewsletterForm />
               </div>
-
               {/* Navigation Links */}
               <div className="flex items-center gap-6">
                 <Link 

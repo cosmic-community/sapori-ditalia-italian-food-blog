@@ -62,7 +62,6 @@ export interface Page extends CosmicObject {
     show_hero?: boolean;
   };
 }
-
 // Newsletter Subscriber interface
 export interface NewsletterSubscriber extends CosmicObject {
   type: 'newsletter-subscribers';
