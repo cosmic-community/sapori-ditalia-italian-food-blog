@@ -180,7 +180,26 @@ export async function getNewsletterSubscribers() {
   }
 }
 
-// Fetch all gallery images
+// Fetch carousel images (automatic slideshow)
+export async function getCarouselImages() {
+  try {
+    const response = await cosmic.objects
+      .findOne({
+        type: 'homepage-carousel',
+        slug: 'homepage-carousel'
+      })
+      .props(['id', 'title', 'metadata']);
+    
+    return response.object;
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return null;
+    }
+    throw new Error('Failed to fetch carousel images');
+  }
+}
+
+// Fetch all gallery images (clickable grid with lightbox)
 export async function getGalleryImages() {
   try {
     const response = await cosmic.objects

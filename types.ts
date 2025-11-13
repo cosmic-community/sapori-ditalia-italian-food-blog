@@ -73,7 +73,22 @@ export interface NewsletterSubscriber extends CosmicObject {
   };
 }
 
-// Gallery Image interface
+// Carousel Image interface (for automatic slideshow)
+export interface CarouselImage {
+  url: string;
+  imgix_url: string;
+  alt?: string;
+}
+
+// Homepage Carousel interface (automatic slideshow)
+export interface HomepageCarousel extends CosmicObject {
+  type: 'homepage-carousel';
+  metadata: {
+    images: CarouselImage[];
+  };
+}
+
+// Gallery Image interface (for clickable grid with lightbox)
 export interface GalleryImage extends CosmicObject {
   type: 'gallery-images';
   metadata: {
@@ -114,6 +129,11 @@ export function isPage(obj: CosmicObject): obj is Page {
 // Type guard for newsletter subscribers
 export function isNewsletterSubscriber(obj: CosmicObject): obj is NewsletterSubscriber {
   return obj.type === 'newsletter-subscribers';
+}
+
+// Type guard for homepage carousel
+export function isHomepageCarousel(obj: CosmicObject): obj is HomepageCarousel {
+  return obj.type === 'homepage-carousel';
 }
 
 // Type guard for gallery images
