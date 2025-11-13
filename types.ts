@@ -73,18 +73,30 @@ export interface NewsletterSubscriber extends CosmicObject {
   };
 }
 
-// Carousel Image interface
+// Carousel Image interface (for automatic slideshow)
 export interface CarouselImage {
   url: string;
   imgix_url: string;
   alt?: string;
 }
 
-// Homepage Carousel interface
+// Homepage Carousel interface (automatic slideshow)
 export interface HomepageCarousel extends CosmicObject {
   type: 'homepage-carousel';
   metadata: {
     images: CarouselImage[];
+  };
+}
+
+// Gallery Image interface (for clickable grid with lightbox)
+export interface GalleryImage extends CosmicObject {
+  type: 'gallery-images';
+  metadata: {
+    image: {
+      url: string;
+      imgix_url: string;
+    };
+    caption?: string;
   };
 }
 
@@ -122,4 +134,9 @@ export function isNewsletterSubscriber(obj: CosmicObject): obj is NewsletterSubs
 // Type guard for homepage carousel
 export function isHomepageCarousel(obj: CosmicObject): obj is HomepageCarousel {
   return obj.type === 'homepage-carousel';
+}
+
+// Type guard for gallery images
+export function isGalleryImage(obj: CosmicObject): obj is GalleryImage {
+  return obj.type === 'gallery-images';
 }

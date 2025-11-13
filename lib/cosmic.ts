@@ -180,7 +180,7 @@ export async function getNewsletterSubscribers() {
   }
 }
 
-// Fetch carousel images
+// Fetch carousel images (automatic slideshow)
 export async function getCarouselImages() {
   try {
     const response = await cosmic.objects
@@ -196,5 +196,23 @@ export async function getCarouselImages() {
       return null;
     }
     throw new Error('Failed to fetch carousel images');
+  }
+}
+
+// Fetch all gallery images (clickable grid with lightbox)
+export async function getGalleryImages() {
+  try {
+    const response = await cosmic.objects
+      .find({
+        type: 'gallery-images'
+      })
+      .props(['id', 'title', 'metadata']);
+    
+    return response.objects;
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return [];
+    }
+    throw new Error('Failed to fetch gallery images');
   }
 }

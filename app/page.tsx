@@ -1,8 +1,9 @@
-import { getPosts, getCategories, getCarouselImages } from '@/lib/cosmic'
+import { getPosts, getCategories, getCarouselImages, getGalleryImages } from '@/lib/cosmic'
 import PostCard from '@/components/PostCard'
 import CategoryFilter from '@/components/CategoryFilter'
 import ImageCarousel from '@/components/ImageCarousel'
-import type { Post, Category, HomepageCarousel } from '@/types'
+import ImageGallery from '@/components/ImageGallery'
+import type { Post, Category, HomepageCarousel, GalleryImage } from '@/types'
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
@@ -10,10 +11,11 @@ export default async function HomePage() {
   const posts = await getPosts() as Post[]
   const categories = await getCategories() as Category[]
   const carouselData = await getCarouselImages() as HomepageCarousel | null
+  const galleryImages = await getGalleryImages() as GalleryImage[]
 
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Image Carousel */}
+      {/* Image Carousel - Automatic slideshow */}
       {carouselData?.metadata?.images && carouselData.metadata.images.length > 0 && (
         <section className="mb-12">
           <ImageCarousel images={carouselData.metadata.images} />
@@ -30,6 +32,16 @@ export default async function HomePage() {
           from passionate Italian chefs
         </p>
       </section>
+
+      {/* Image Gallery Section - Clickable grid with lightbox */}
+      {galleryImages.length > 0 && (
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            📸 Culinary Gallery
+          </h2>
+          <ImageGallery images={galleryImages} />
+        </section>
+      )}
 
       {/* Category Filter */}
       <CategoryFilter categories={categories} />
