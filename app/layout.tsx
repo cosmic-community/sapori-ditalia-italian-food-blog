@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import CosmicBadge from '@/components/CosmicBadge'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,6 +33,28 @@ export default function RootLayout({
         <footer className="bg-gray-900 text-white py-8 mt-16">
           <div className="container mx-auto px-4">
             <div className="flex flex-col items-center gap-6">
+              {/* Navigation Links */}
+              <div className="flex items-center gap-6">
+                <Link 
+                  href="/" 
+                  className="text-gray-300 hover:text-white transition-colors font-medium"
+                >
+                  Home
+                </Link>
+                <Link 
+                  href="/about" 
+                  className="text-gray-300 hover:text-white transition-colors font-medium"
+                >
+                  About
+                </Link>
+                <Link 
+                  href="/contact" 
+                  className="text-gray-300 hover:text-white transition-colors font-medium"
+                >
+                  Contact
+                </Link>
+              </div>
+
               {/* Social Media Links */}
               <div className="flex items-center gap-6">
                 <a 
