@@ -73,6 +73,21 @@ export interface NewsletterSubscriber extends CosmicObject {
   };
 }
 
+// Carousel Image interface
+export interface CarouselImage {
+  url: string;
+  imgix_url: string;
+  alt?: string;
+}
+
+// Homepage Carousel interface
+export interface HomepageCarousel extends CosmicObject {
+  type: 'homepage-carousel';
+  metadata: {
+    images: CarouselImage[];
+  };
+}
+
 // API response types
 export interface CosmicResponse<T> {
   objects: T[];
@@ -102,4 +117,9 @@ export function isPage(obj: CosmicObject): obj is Page {
 // Type guard for newsletter subscribers
 export function isNewsletterSubscriber(obj: CosmicObject): obj is NewsletterSubscriber {
   return obj.type === 'newsletter-subscribers';
+}
+
+// Type guard for homepage carousel
+export function isHomepageCarousel(obj: CosmicObject): obj is HomepageCarousel {
+  return obj.type === 'homepage-carousel';
 }
