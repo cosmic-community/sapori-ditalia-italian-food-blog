@@ -4,7 +4,7 @@ import { cosmic } from '@/lib/cosmic'
 import type { ProductOfTheDay } from '@/types'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-  apiVersion: '2024-11-20.acacia',
+  apiVersion: '2023-10-16',
 })
 
 export async function POST(request: Request) {
